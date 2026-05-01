@@ -1,0 +1,17 @@
+<h1>Edit Route</h1>
+
+<div class="form-wrapper">
+<form method="POST" action="/route/edit/<%= route.Route_ID %>">
+
+  <label>Source</label>
+  <input type="text" name="Source" value="<%= route.Source %>" required>
+
+  <label>Destination</label>
+  <input type="text" name="Destination" value="<%= route.Destination %>" required>
+
+  <label>Distance</label>
+  <input type="number" name="Distance" value="<%= route.Distance %>" required>
+
+  <button type="submit">Update</button>
+</form>
+</div>

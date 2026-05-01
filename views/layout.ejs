@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airline Management System</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- ✅ Show navbar ONLY when logged in -->
+    <% if (typeof session !== 'undefined' && session.user) { %>
+        <nav class="navbar">
+            <h2>✈️ Airline Admin</h2>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/aircraft">Aircraft</a>
+                <a href="/route">Routes</a>
+                <a href="/flight">Flights</a>
+                <a href="/booking">Bookings</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+    <% } %>
+
+    <!-- ✅ Different layout for auth pages -->
+    <% if (!session || !session.user) { %>
+        <!-- No container → allows full center -->
+        <%- body %>
+    <% } else { %>
+        <!-- Normal pages -->
+        <div class="container">
+            <%- body %>
+        </div>
+    <% } %>
+
+</body>
+</html>

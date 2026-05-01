@@ -1,0 +1,57 @@
+<h1>Add Flight</h1>
+<div class="form-wrapper">
+
+<form method="POST" action="/flight/add">
+
+    <!-- Aircraft Dropdown -->
+    <label>Aircraft:</label><br>
+    <select name="Aircraft_ID" required>
+        <% aircrafts.forEach(a => { %>
+            <option value="<%= a.Aircraft_ID %>">
+                <%= a.Aircraft_ID %> - <%= a.Model %>
+            </option>
+        <% }) %>
+    </select>
+
+    <br><br>
+
+    <!-- Route Dropdown -->
+    <label>Route:</label><br>
+    <select name="Route_ID" required>
+        <% routes.forEach(r => { %>
+            <option value="<%= r.Route_ID %>">
+                <%= r.Source %> → <%= r.Destination %>
+            </option>
+        <% }) %>
+    </select>
+
+    <br><br>
+
+    <!-- Date -->
+    <label>Date:</label><br>
+    <input type="date" name="Date" required>
+
+    <br><br>
+
+    <!-- Time -->
+    <label>Time:</label><br>
+    <input type="time" name="Time" required>
+
+    <br><br>
+
+    <!-- Status -->
+    <label>Status:</label><br>
+    <input type="text" name="Status" placeholder="On Time / Delayed" required>
+
+    <br><br>
+
+    <!-- Available Seats -->
+    <label>Available Seats:</label><br>
+    <input type="number" name="Available_seats" required>
+
+    <br><br>
+
+    <button type="submit">Add Flight</button>
+
+</form>
+</div>

@@ -1,0 +1,31 @@
+<h1>Booking List</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Passenger</th>
+    <th>Flight</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+
+  <% bookings.forEach(b => { %>
+    <tr>
+      <td><%= b.Booking_ID %></td>
+      <td><%= b.Name %></td>
+      <td><%= b.Flight_ID %></td>
+      <td><%= b.Booking_Status %></td>
+
+      <td>
+        <% if (b.Booking_Status !== "CANCELLED") { %>
+          <a href="/booking/cancel/<%= b.Booking_ID %>"
+             onclick="return confirm('Cancel this booking?')">
+             <button class="delete-btn">Cancel</button>
+          </a>
+        <% } else { %>
+          Cancelled
+        <% } %>
+      </td>
+    </tr>
+  <% }) %>
+</table>

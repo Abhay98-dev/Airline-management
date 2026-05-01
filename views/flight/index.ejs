@@ -1,0 +1,39 @@
+<h1>Flight List</h1>
+
+<a href="/flight/add" class="button-link">
+  <button>Add Flight</button>
+</a>
+
+<br><br>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Aircraft</th>
+    <th>Route</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+
+  <% flights.forEach(f => { %>
+    <tr>
+      <td><%= f.Flight_ID %></td>
+      <td><%= f.Model %></td>
+      <td><%= f.Source %> → <%= f.Destination %></td>
+      <td><%= f.Date %></td>
+      <td><%= f.Time %></td>
+      <td><%= f.Status %></td>
+      <td>
+        <a href="/flight/edit/<%= f.Flight_ID %>">
+          <button style="background:#10b981">Edit</button>
+        </a>
+        <a href="/flight/delete/<%= f.Flight_ID %>"
+           onclick="return confirm('Delete this flight?')">
+          <button class="delete-btn">Delete</button>
+        </a>
+      </td>
+    </tr>
+  <% }) %>
+</table>

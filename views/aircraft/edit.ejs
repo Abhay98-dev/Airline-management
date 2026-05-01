@@ -1,0 +1,18 @@
+<h1>Edit Aircraft</h1>
+
+<div class="form-wrapper">
+<form method="POST" action="/aircraft/edit/<%= aircraft.Aircraft_ID %>">
+
+    <label>Model:</label>
+    <input type="text" name="model" value="<%= aircraft.Model %>" required>
+
+    <label>Capacity:</label>
+    <input type="number" name="capacity" value="<%= aircraft.Capacity %>" required>
+
+    <label>Status:</label>
+    <input type="text" name="status" value="<%= aircraft.Status %>" required>
+
+    <button type="submit">Update</button>
+
+</form>
+</div>

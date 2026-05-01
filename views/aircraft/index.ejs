@@ -1,0 +1,44 @@
+<h1>Aircraft List</h1>
+
+<a href="/aircraft/add" class="button-link">
+    <button>Add Aircraft</button>
+</a>
+
+<br><br>
+
+<table>
+    <tr>
+        <th>Aircraft ID</th>
+        <th>Model</th>
+        <th>Capacity</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    <% if (aircrafts.length === 0) { %>
+        <tr>
+            <td colspan="5" style="text-align: center;">No aircraft available</td>
+        </tr>
+    <% } %>
+
+    <% aircrafts.forEach(a => { %>
+        <tr>
+            <td><%= a.Aircraft_ID %></td>
+            <td><%= a.model %></td>
+            <td><%= a.capacity %></td>
+            <td><%= a.status %></td>
+
+            <td>
+                <a href="/aircraft/edit/<%= a.Aircraft_ID %>">
+                    <button style="background-color: #10b981;">Edit</button>
+                </a>
+
+                <a href="/aircraft/delete/<%= a.Aircraft_ID %>" 
+                   onclick="return confirm('Are you sure you want to delete this aircraft?')">
+                    <button class="delete-btn">Delete</button>
+                </a>
+            </td>
+        </tr>
+    <% }) %>
+
+</table>

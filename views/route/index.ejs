@@ -1,0 +1,37 @@
+<h1>Route List</h1>
+
+<a href="/route/add" class="button-link">
+  <button>Add Route</button>
+</a>
+
+<br><br>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Source</th>
+    <th>Destination</th>
+    <th>Distance</th>
+    <th>Actions</th>
+  </tr>
+
+  <% if (routes.length === 0) { %>
+    <tr><td colspan="5" style="text-align:center;">No routes</td></tr>
+  <% } %>
+
+  <% routes.forEach(r => { %>
+    <tr>
+      <td><%= r.Route_ID %></td>
+      <td><%= r.Source %></td>
+      <td><%= r.Destination %></td>
+      <td><%= r.Distance %></td>
+      <td>
+        <a href="/route/edit/<%= r.Route_ID %>"><button style="background:#10b981">Edit</button></a>
+        <a href="/route/delete/<%= r.Route_ID %>"
+           onclick="return confirm('Delete this route?')">
+           <button class="delete-btn">Delete</button>
+        </a>
+      </td>
+    </tr>
+  <% }) %>
+</table>

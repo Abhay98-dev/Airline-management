@@ -1,0 +1,40 @@
+<h1>Edit Flight</h1>
+
+<div class="form-wrapper">
+<form method="POST" action="/flight/edit/<%= flight.Flight_ID %>">
+
+  <label>Aircraft</label>
+  <select name="Aircraft_ID">
+    <% aircrafts.forEach(a => { %>
+      <option value="<%= a.Aircraft_ID %>"
+        <%= a.Aircraft_ID === flight.Aircraft_ID ? "selected" : "" %>>
+        <%= a.Aircraft_ID %> - <%= a.Model %>
+      </option>
+    <% }) %>
+  </select>
+
+  <label>Route</label>
+  <select name="Route_ID">
+    <% routes.forEach(r => { %>
+      <option value="<%= r.Route_ID %>"
+        <%= r.Route_ID === flight.Route_ID ? "selected" : "" %>>
+        <%= r.Source %> → <%= r.Destination %>
+      </option>
+    <% }) %>
+  </select>
+
+  <label>Date</label>
+  <input type="date" name="Date" value="<%= flight.Date.toISOString().split('T')[0] %>">
+
+  <label>Time</label>
+  <input type="time" name="Time" value="<%= flight.Time %>">
+
+  <label>Status</label>
+  <input type="text" name="Status" value="<%= flight.Status %>">
+
+  <label>Available Seats</label>
+  <input type="number" name="Available_seats" value="<%= flight.Available_seats %>">
+
+  <button type="submit">Update</button>
+</form>
+</div>

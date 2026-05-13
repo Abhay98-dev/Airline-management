@@ -95,7 +95,7 @@ router.post("/add",isUser, (req, res) => {
                         connection.commit(err => {
                           if (err) return connection.rollback(() => res.send("Commit error"));
 
-                          res.redirect("booking/my"); // or show success message
+                          res.redirect("/booking/my"); // or show success message
                         });
                       }
                     );
@@ -122,6 +122,18 @@ router.get("/",isAdmin,(req, res) => {
 
     res.render("booking/index", { bookings: results });
   });
+});
+
+router.get("/index", (req, res) => {
+  if (req.session.role === "admin") {
+    return res.redirect("/booking");
+  }
+
+  if (req.session.role === "user") {
+    return res.redirect("/booking/my");
+  }
+
+  res.redirect("/login");
 });
 
 router.get("/my", isUser, (req, res) => {

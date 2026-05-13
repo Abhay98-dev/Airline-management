@@ -57,15 +57,26 @@ router.post("/add", isAdmin,(req, res) => {
 router.get("/delete/:id",isAdmin, (req, res) => {
   const id = req.params.id;
 
-  const sql = "DELETE FROM aircraft WHERE Aircraft_ID = ?";
-
-  connection.query(sql, [id], (err, result) => {
+  const checkSql = "SELECT COUNT(*) AS count FROM flight WHERE Aircraft_ID = ?";
+  connection.query(checkSql, [id], (err, checkResult) => {
     if (err) {
       console.log(err);
-      return res.send("Error deleting aircraft");
+      return res.send("Error checking aircraft usage");
     }
 
-    res.redirect("/aircraft");
+    if (checkResult[0].count > 0) {
+      return res.send("Cannot delete this aircraft because it is assigned to one or more flights. Remove or reassign those flights first.");
+    }
+
+    const sql = "DELETE FROM aircraft WHERE Aircraft_ID = ?";
+    connection.query(sql, [id], (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send("Error deleting aircraft");
+      }
+
+      res.redirect("/aircraft");
+    });
   });
 });
 
